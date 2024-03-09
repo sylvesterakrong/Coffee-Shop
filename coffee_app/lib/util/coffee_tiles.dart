@@ -1,9 +1,19 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_super_parameters
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_super_parameters, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
 
 class CoffeeTile extends StatelessWidget {
-  const CoffeeTile({Key? key}) : super(key: key);
+  final String coffeeImagePath;
+  final String coffeeName;
+  final String coffeePrice;
+
+  CoffeeTile({
+    required this.coffeeImagePath,
+    required this.coffeeName,
+    required this.coffeePrice,
+  });
+
+  // const CoffeeTile({super.key, required this.coffeeImagePath, required this.coffeeName, required this.coffeePrice});
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +27,56 @@ class CoffeeTile extends StatelessWidget {
           color: Colors.black54,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Coffee Images
-            Image.asset('assets/images/image1.jpg'),
-
-            //coffee name
-            Text(
-              'Latte',
-              style: TextStyle(fontSize: 20),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(coffeeImagePath),
             ),
 
-            Text('Latte'),
+            //coffee name
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    coffeeName,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    'With Almond Milk',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            //Price
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("\$" + coffeePrice),
+                  Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Icon(Icons.add),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
