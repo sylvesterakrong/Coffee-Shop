@@ -6,21 +6,19 @@ void main() {
   runApp(const MyApp());
 }
 
-//splash screen
 // class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+//   const MyApp({Key? key}) : super(key: key);
 
 //   @override
 //   Widget build(BuildContext context) {
-//     //Delay for splash screen
+//     // Delay for splash screen
 //     Future.delayed(
-//       Duration(seconds: 3),
+//       Duration(seconds: 2),
 //       () {
-//         runApp(HomeApp as Widget);
 //         Navigator.pushReplacement(
 //           context,
 //           MaterialPageRoute(
-//             builder: (context) => HomePage(),
+//             builder: (context) => const HomeApp(), // Use HomeApp here
 //           ),
 //         );
 //       },
@@ -30,8 +28,10 @@ void main() {
 //       debugShowCheckedModeBanner: false,
 //       home: Scaffold(
 //         body: Image.asset(
-//           'assets/images/splash.png', 
-//           fit: BoxFit.contain
+//           'assets/images/splash.png',
+//           fit: BoxFit.cover,
+//           width: double.infinity,
+//           height: double.infinity,
 //         ),
 //       ),
 //     );
@@ -45,12 +45,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: const HomePage(),
       theme: ThemeData(
-        //colorSchemeSeed: Colors.orange,
         brightness: Brightness.dark,
         primarySwatch: Colors.orange,
-        //useMaterial3: true,
+        useMaterial3: true,
       ),
     );
   }
